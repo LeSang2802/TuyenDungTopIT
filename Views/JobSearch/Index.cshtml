@@ -1,0 +1,168 @@
+﻿@*                  @model IEnumerable<TuyenDungTopIT.Models.Jobs>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+}
+
+<h1>Danh sách công việc</h1>
+
+<!-- Liên kết thêm công việc mới -->
+<a href="@Url.Action("Create", "Home")" class="btn btn-success mb-3">Thêm công việc</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tiêu đề</th>
+            <th>Mô tả</th>
+            <th>Công ty</th>
+            <th>Địa điểm</th>
+            <th>Lương</th>
+            <th>Ngày đăng</th>
+            <th>Hành động</th> <!-- Cột thêm các nút hành động -->
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var job in Model)
+            {
+                <tr>
+                    <td>@job.JobId</td>
+                    <td>@job.Title</td>
+                    <td>@job.Description</td>
+                    <td>@job.CompanyName</td>
+                    <td>@job.Location</td>
+                    <td>@string.Format("{0:C0}", job.Salary)</td>
+                    <td>@job.PostedAt.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <!-- Sửa công việc -->
+                        <a href="@Url.Action("Edit", "Home", new { id = job.JobId })" class="btn btn-warning btn-sm">Sửa</a>
+
+                        <!-- Xóa công việc -->
+                        <a href="@Url.Action("Delete", "Home", new { id = job.JobId })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa công việc này không?')">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">Không có công việc nào.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@
+
+@model IEnumerable<TuyenDungTopIT.Models.Jobs>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+}
+
+<h1>Danh sách công việc</h1>
+
+<!-- Liên kết thêm công việc mới -->
+<a href="@Url.Action("Create", "Home")" class="btn btn-success mb-3">Thêm công việc</a>
+
+
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table th,
+        .table td {
+            padding: 12px 15px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .table td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table .btn {
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .table .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .table .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .table .btn:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+    .btn-success {
+        font-weight: bold;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tiêu đề</th>
+            <th>Mô tả</th>
+            <th>Công ty</th>
+            <th>Địa điểm</th>
+            <th>Lương</th>
+            <th>Ngày đăng</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var job in Model.Select((value, index) => new { value, index }))
+            {
+                <tr>
+                    <td>@(job.index + 1)</td>
+                    <td>@job.value.Title</td>
+                    <td>@job.value.Description</td>
+                    <td>@job.value.CompanyName</td>
+                    <td>@job.value.Location</td>
+                    <td>@string.Format("{0:C0}", job.value.Salary)</td>
+                    <td>@job.value.PostedAt.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Home", new { id = job.value.JobId })" class="btn btn-warning btn-sm">Sửa</a>
+
+                        <a href="@Url.Action("Delete", "Home", new { id = job.value.JobId })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa công việc này không?')">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">Không có công việc nào.</td>
+            </tr>
+        }
+    </tbody>
+</table>

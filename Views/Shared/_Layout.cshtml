@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TuyenDungTopIT</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TuyenDungTopIT.styles.css" asp-append-version="true" />
+
+    <!-- Add Custom Styles for Color Changes -->
+    <style>
+        /* Change header and footer text and icons color */
+        header, footer {
+            color: #003399;
+        }
+
+            header .navbar-nav .nav-link, footer {
+                color: #003399;
+            }
+
+            header .navbar-brand, header .navbar-toggler-icon, header .navbar-nav .nav-link {
+                color: #003399;
+            }
+
+            header .navbar-toggler-icon {
+                border-color: #003399;
+            }
+
+            header .bi, footer .bi {
+                color: #003399;
+            }
+
+        .nav-item{
+            color: #003399;
+        }
+
+        .btn-outline-success {
+            color: #003399;
+            border-color: #003399;
+        }
+
+            .btn-outline-success:hover {
+                background-color: #003399;
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/logo.png" alt="Logo" style="height: 40px;" class="me-2" /> <!-- Cập nhật đường dẫn logo -->
+                    <span>TOP IT</span>
+                </a>
+
+                <!-- Toggle button for mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Jobs" asp-action="Index">Tuyển dụng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Profiles" asp-action="Index">Hồ sơ</a>
+                        </li>
+                    </ul>
+
+                    <!-- Thanh tìm kiếm giữa -->
+                    <form class="d-flex mx-auto" action="@Url.Action("SearchJobs", "JobSearch")" method="get">
+                        <input class="form-control me-2" type="search" name="keywords" placeholder="Tìm kiếm công việc..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Tìm</button>
+                    </form>
+
+
+                    <!-- Right Section -->
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-bell" style="font-size: 1.5rem;"></i> <!-- Biểu tượng thông báo -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-calendar" style="font-size: 1.5rem;"></i> <!-- Biểu tượng lịch -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-file-earmark-text" style="font-size: 1.5rem;"></i> <!-- Biểu tượng file -->
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i> <!-- Biểu tượng user -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+           TuyenDungTopIT - Trang tuyển dụng uy tín hàng đầu</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
