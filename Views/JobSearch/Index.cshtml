@@ -1,58 +1,4 @@
-﻿@*                  @model IEnumerable<TuyenDungTopIT.Models.Jobs>
-
-@{
-    ViewData["Title"] = "Danh sách công việc";
-}
-
-<h1>Danh sách công việc</h1>
-
-<!-- Liên kết thêm công việc mới -->
-<a href="@Url.Action("Create", "Home")" class="btn btn-success mb-3">Thêm công việc</a>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>STT</th>
-            <th>Tiêu đề</th>
-            <th>Mô tả</th>
-            <th>Công ty</th>
-            <th>Địa điểm</th>
-            <th>Lương</th>
-            <th>Ngày đăng</th>
-            <th>Hành động</th> <!-- Cột thêm các nút hành động -->
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            foreach (var job in Model)
-            {
-                <tr>
-                    <td>@job.JobId</td>
-                    <td>@job.Title</td>
-                    <td>@job.Description</td>
-                    <td>@job.CompanyName</td>
-                    <td>@job.Location</td>
-                    <td>@string.Format("{0:C0}", job.Salary)</td>
-                    <td>@job.PostedAt.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        <!-- Sửa công việc -->
-                        <a href="@Url.Action("Edit", "Home", new { id = job.JobId })" class="btn btn-warning btn-sm">Sửa</a>
-
-                        <!-- Xóa công việc -->
-                        <a href="@Url.Action("Delete", "Home", new { id = job.JobId })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa công việc này không?')">Xóa</a>
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="8" class="text-center">Không có công việc nào.</td>
-            </tr>
-        }
-    </tbody>
-</table>
+﻿@*    
  *@
 
 @model IEnumerable<TuyenDungTopIT.Models.Jobs>
@@ -64,7 +10,7 @@
 <h1>Danh sách công việc</h1>
 
 <!-- Liên kết thêm công việc mới -->
-<a href="@Url.Action("Create", "Home")" class="btn btn-success mb-3">Thêm công việc</a>
+<a href="@Url.Action("Create", "JobSearch")" class="btn btn-success mb-3">Thêm công việc</a>
 
 
 <style>
@@ -151,9 +97,9 @@
                     <td>@string.Format("{0:C0}", job.value.Salary)</td>
                     <td>@job.value.PostedAt.ToString("dd/MM/yyyy")</td>
                     <td>
-                        <a href="@Url.Action("Edit", "Home", new { id = job.value.JobId })" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="@Url.Action("Edit", "JobSearch", new { id = job.value.JobId })" class="btn btn-warning btn-sm">Sửa</a>
 
-                        <a href="@Url.Action("Delete", "Home", new { id = job.value.JobId })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa công việc này không?')">Xóa</a>
+                        <a href="@Url.Action("Delete", "JobSearch", new { id = job.value.JobId })" class="btn btn-danger btn-sm">Xóa</a>
                     </td>
                 </tr>
             }

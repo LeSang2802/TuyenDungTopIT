@@ -1,0 +1,23 @@
+﻿@model TuyenDungTopIT.Models.Jobs
+
+@{
+    ViewData["Title"] = "Xóa công việc";
+}
+
+<h1>Xóa công việc</h1>
+
+<h3>Bạn có chắc chắn muốn xóa công việc này không?</h3>
+
+<div>
+    <h4>@Model.Title</h4>
+    <p>@Model.Description</p>
+    <p><strong>Công ty:</strong> @Model.CompanyName</p>
+    <p><strong>Địa điểm:</strong> @Model.Location</p>
+    <p><strong>Lương:</strong> @Model.Salary</p>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" name="id" value="@Model.JobId" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
